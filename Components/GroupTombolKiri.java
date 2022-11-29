@@ -1,4 +1,4 @@
-package Components.Buttons;
+package Components;
 
 import javax.swing.*;
 
@@ -6,9 +6,10 @@ import Styles.Palletes;
 
 import java.awt.*;
 
+
 public class GroupTombolKiri extends JPanel {
   private Tombol clear = new Tombol("Clear", new Dimension(270, 80));
-  private Tombol koma = new Tombol(",", new Dimension(90, 80));
+  private Tombol koma = new Tombol(".", new Dimension(90, 80));
   private Tombol[] angka = new Tombol[10];
   private JPanel gridAngka = new JPanel();
 
@@ -48,6 +49,16 @@ public class GroupTombolKiri extends JPanel {
   }
 
   private void actionListenerInit() {
+    clear.addActionListener((e) -> Display.clearDisplayValue(Frame.display));
+    koma.addActionListener((e) -> Display.appendComma(Frame.display));
 
+    // menambahkan action listener kepada tombol angka
+    for (int i = 0; i < angka.length; i++) {
+      String value = String.valueOf(i);
+
+      angka[i].addActionListener((e) -> {
+        Display.appendNumber(Frame.display, value);
+      });
+    }
   }
 }

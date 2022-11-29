@@ -1,4 +1,4 @@
-package Components.Buttons;
+package Components;
 
 import javax.swing.*;
 
@@ -24,5 +24,13 @@ public class GroupTombolKanan extends JPanel {
     add(kurang);
     add(tambah);
     add(hasil);
+    actionListenerInit();
+  }
+
+  private void actionListenerInit() {
+    tambah.addActionListener((e) -> Display.appendOperand(Frame.display, " + "));
+    kurang.addActionListener((e) -> Display.appendOperand(Frame.display, " - "));
+    kali.addActionListener((e) -> Display.appendOperand(Frame.display, " * "));
+    bagi.addActionListener((e) -> Display.appendOperand(Frame.display, " / "));
   }
 }
