@@ -1,7 +1,7 @@
 package Styles;
 import java.awt.Color;
 
-public class Palletes {
+public abstract class Palletes {
   /* Amber Colors */
   public static final Color amber500 = new Color(0xf59e0b);
 

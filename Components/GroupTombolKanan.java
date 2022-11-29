@@ -1,7 +1,10 @@
 package Components;
 
+import javax.script.ScriptException;
 import javax.swing.*;
 
+import Data.DataKalkulator;
+import Data.Operasi;
 import Styles.Palletes;
 
 import java.awt.*;
@@ -28,9 +31,17 @@ public class GroupTombolKanan extends JPanel {
   }
 
   private void actionListenerInit() {
-    tambah.addActionListener((e) -> Display.appendOperand(Frame.display, " + "));
-    kurang.addActionListener((e) -> Display.appendOperand(Frame.display, " - "));
-    kali.addActionListener((e) -> Display.appendOperand(Frame.display, " * "));
-    bagi.addActionListener((e) -> Display.appendOperand(Frame.display, " / "));
+    tambah.addActionListener((e) -> Display.appendOperand(Frame.display, " + ", Operasi.tambah));
+    kurang.addActionListener((e) -> Display.appendOperand(Frame.display, " - ", Operasi.kurang));
+    kali.addActionListener((e) -> Display.appendOperand(Frame.display, " * ", Operasi.kali));
+    bagi.addActionListener((e) -> Display.appendOperand(Frame.display, " / ", Operasi.bagi));
+    hasil.addActionListener((e) -> {
+      try {
+        DataKalkulator.hitung();
+        Display.setDisplayValue(Frame.display, String.valueOf(DataKalkulator.getHasil()));
+      } catch (ScriptException e1) {
+        e1.printStackTrace();
+      }
+    });
   }
 }
